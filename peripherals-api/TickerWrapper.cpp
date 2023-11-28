@@ -24,10 +24,12 @@ mbed_ticker_t mbed_ticker_create() {
 }
 
 void mbed_ticker_attach(mbed_ticker_t p, void (*func)(void), uint32_t interval_us) {
+    MBED_ASSERT(p != nullptr);
     ((Ticker *) p)->attach(func, std::chrono::microseconds{interval_us});
 }
 
 void mbed_ticker_detach(mbed_ticker_t p) {
+    MBED_ASSERT(p != nullptr);
     ((Ticker *) p)->detach();
 }
 
